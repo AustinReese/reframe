@@ -192,7 +192,7 @@ class Relation(pd.DataFrame):
 
 
     def union(self,other):
-        """ Take two Relations with the same columns and put them together top to bottom
+        """ Take two Relations with the same columns and put them together top to bottom and drop duplicate rows
 
         :param other:
         :return:
@@ -235,7 +235,7 @@ class Relation(pd.DataFrame):
         if sorted(self.columns) != sorted(other.columns):
             raise ValueError("Relations must be Union compatible")
         else:
-            return Relation(pd.concat([pd.DataFrame(self),pd.DataFrame(other)]))
+            return Relation(pd.concat([pd.DataFrame(self),pd.DataFrame(other)]).drop_duplicates())
 
     def minus(self,other):
         """return a relation containing the rows in self 'but not' in other
