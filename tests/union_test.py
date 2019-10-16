@@ -23,7 +23,6 @@ def test_union_remove_duplicates():
     df = Relation("../country.csv")
     republic_df = df.query("governmentform == 'Republic'")
     union_on_itself_df = republic_df.union(republic_df)
-    print(len(republic_df), len(union_on_itself_df))
     assert len(republic_df) == len(union_on_itself_df)
     
 def test_union_compatibility():
@@ -37,7 +36,6 @@ def test_union_compatibility():
         monarchy_df.union(groupby_gov_df)
     except ValueError as e:
         assert str(e) == "Relations must be Union compatible"
-        
     except:
         '''
         all other errors result in test failure
